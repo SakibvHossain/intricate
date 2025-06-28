@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:intricate1/core/utils/app_colors.dart';
 import 'package:intricate1/feature/home/data/controller/nav_controller.dart';
 import 'package:intricate1/feature/home/ui/widgets/tab_item.dart';
 
@@ -41,12 +42,12 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: Obx(() => GNav(
               gap: 8,
-              activeColor: Colors.white,
-              color: Colors.grey[800],
+              activeColor: AppColors.primaryColor,
+              color: AppColors.fontColor,
               iconSize: 24,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               duration: const Duration(milliseconds: 400),
-              tabBackgroundColor: Colors.blueAccent,
+              tabBackgroundColor: Colors.white,
               tabs: const [
                 GButton(icon: Icons.home, text: 'Home'),
                 GButton(icon: Icons.search, text: 'Plans'),
