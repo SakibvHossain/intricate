@@ -113,7 +113,7 @@ class NetworkCaller {
         return ResponseData(
           isSuccess: true,
           statusCode: response.statusCode,
-          responseData: decodedResponse['result'] ?? decodedResponse,
+          responseData: decodedResponse['data'] ?? decodedResponse,
           responseBody: decodedResponse,
           errorMessage: '',
         );
@@ -164,7 +164,7 @@ class NetworkCaller {
 
   Future<String> uploadImage(File imageFile, String imagUrl,String fileName ) async {
     await preferencesHelper.init();
-    String? token = preferencesHelper.getString("userToken");
+    final String? token = preferencesHelper.getString('userToken');
 
     if(token!= null){
       try {

@@ -22,7 +22,7 @@ class SplashController extends GetxController {
       if (token != null && token.isNotEmpty) {
         Get.offAllNamed(AppRoute.navBar);
       } else {
-        Get.offAllNamed(AppRoute.trail);
+        Get.offAllNamed(AppRoute.signIn);
       }
     });
   }

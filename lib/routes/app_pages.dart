@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
-import 'package:intricate1/feature/home/ui/screens/home_screen.dart';
-import 'package:intricate1/feature/onboarding/ui/screens/onboarding_step1.dart';
+import 'package:intricate1/feature/auth/ui/screens/otp_screen.dart';
+import 'package:intricate1/feature/auth/ui/screens/sign_in_screen.dart';
+import 'package:intricate1/feature/auth/ui/screens/sign_up_screen.dart';
+import 'package:intricate1/feature/home/ui/screens/bottom_nav_screen.dart';
+import 'package:intricate1/feature/onboarding/ui/screens/assessment_page.dart';
 import 'package:intricate1/feature/onboarding/ui/screens/splash_screen.dart';
 import 'package:intricate1/feature/onboarding/ui/screens/trail_screen.dart';
 import 'package:intricate1/routes/app_routes.dart';
@@ -8,20 +11,39 @@ import 'package:intricate1/routes/app_routes.dart';
 class AppPages {
   static final routes = [
     GetPage(
-        name: AppRoute.splash,
-        page: () => const SplashScreen(),
-        transition: Transition.rightToLeft),
+      name: AppRoute.splash,
+      page: () => const SplashScreen(),
+      transition: Transition.rightToLeft,
+    ),
     GetPage(
-        name: AppRoute.trail,
-        page: () => const TrailScreen(),
-        transition: Transition.rightToLeft),
+      name: AppRoute.trail,
+      page: () => const TrailScreen(),
+      transition: Transition.rightToLeft,
+    ),
     GetPage(
-        name: AppRoute.onboarding,
-        page: () => OnboardingStep1(),
-        transition: Transition.rightToLeft),
+      name: AppRoute.home,
+      page: () => BottomNavScreen(),
+      transition: Transition.rightToLeft,
+    ),
     GetPage(
-        name: AppRoute.home,
-        page: () => HomeScreen(),
-        transition: Transition.rightToLeft),
+      name: AppRoute.onboarding,
+      page: () => AssessmentPage(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppRoute.signIn,
+      page: () => SignInScreen(),
+      transition: Transition.leftToRight,
+    ),
+    GetPage(
+      name: AppRoute.signUp,
+      page: () => SignUpScreen(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppRoute.otp,
+      page: () => OtpScreen(),
+      transition: Transition.rightToLeft,
+    ),
   ];
 }

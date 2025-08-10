@@ -39,7 +39,7 @@ class TrailScreen extends StatelessWidget {
 
             //* Button
             CustomButton(text: 'Get Started – Free 3-Day Trial', onTap: (){
-              Get.offAllNamed(AppRoute.home);
+              Get.offAllNamed(AppRoute.onboarding);
             },),
           ],
         ),

@@ -4,6 +4,6 @@ import 'package:intricate1/feature/onboarding/data/controller/splash_controller.
 class AppBinding extends Bindings {
   @override
   void dependencies() {
-     Get.put(SplashController());
+    Get.put(SplashController(),);
   }
 }
