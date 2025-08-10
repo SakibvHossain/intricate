@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:intricate1/core/helper/sheared_prefarences_helper.dart';
 import 'package:intricate1/feature/onboarding/onboarding_1/ui/screen/onboarding_1.dart';
+import 'package:intricate1/feature/onboarding/pageview/ui/screen/page_view_screen.dart';
 import 'package:intricate1/routes/app_routes.dart';
 
 class SplashController extends GetxController {
@@ -25,7 +26,7 @@ class SplashController extends GetxController {
       // } else {
       //   Get.offAllNamed(AppRoute.signIn);
       // }
-      Get.offAll(() => const Onboarding1());
+      Get.offAll(() => const PageViewScreen());
     });
   }
 
