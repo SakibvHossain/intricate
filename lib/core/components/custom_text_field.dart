@@ -44,7 +44,7 @@ class CustomTextField extends StatelessWidget {
             text: labelText,
             fontSize: 18.sp,
             fontWeight: FontWeight.w500,
-            color: Color(0xFF2D2D2D),
+            color:  Colors.white,
             // color: AppColor.textColorSecond,
           ),
         ),
@@ -67,7 +67,7 @@ class CustomTextField extends StatelessWidget {
                 // color: AppColor.textColor,
               ),
               decoration: InputDecoration(
-                fillColor: const Color(0xFFF9F9FB),
+                fillColor:  Colors.grey[900],
                 filled: true,
                 hintText: hintText,
                 hintStyle: GoogleFonts.poppins(
@@ -77,7 +77,7 @@ class CustomTextField extends StatelessWidget {
                 ),
                 contentPadding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 6.h),
                 border:  OutlineInputBorder(
-                    borderSide: BorderSide.none,
+                    borderSide: const BorderSide(color: Colors.grey),
                     borderRadius: BorderRadius.all(Radius.circular(12.r))
                 ),
               ),
