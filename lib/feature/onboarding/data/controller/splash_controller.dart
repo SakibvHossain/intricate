@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:get/get.dart';
 import 'package:intricate1/core/helper/sheared_prefarences_helper.dart';
+import 'package:intricate1/feature/onboarding/onboarding_1/ui/screen/onboarding_1.dart';
 import 'package:intricate1/routes/app_routes.dart';
 
 class SplashController extends GetxController {
@@ -15,15 +16,16 @@ class SplashController extends GetxController {
   }
 
   void checkLoginStatus() async {
-    await preferencesHelper.init();
-    final String? token = preferencesHelper.getString('userToken');
+    // await preferencesHelper.init();
+    // final String? token = preferencesHelper.getString('userToken');
 
     timer = Timer(const Duration(seconds: 2), () {
-      if (token != null && token.isNotEmpty) {
-        Get.offAllNamed(AppRoute.navBar);
-      } else {
-        Get.offAllNamed(AppRoute.signIn);
-      }
+      // if (token != null && token.isNotEmpty) {
+      //   Get.offAllNamed(AppRoute.navBar);
+      // } else {
+      //   Get.offAllNamed(AppRoute.signIn);
+      // }
+      Get.offAll(() => const Onboarding1());
     });
   }
 
