@@ -1,127 +1,124 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:intricate1/core/components/custom_text.dart';
+import 'package:intricate1/core/components/custom_button.dart';
 import 'package:intricate1/core/components/custom_text_field.dart';
-import 'package:intricate1/core/utils/app_colors.dart';
-import 'package:intricate1/core/validation/email_validation.dart';
-import 'package:intricate1/core/validation/name_validator.dart';
-import 'package:intricate1/feature/auth/data/controller/sign_in_controller.dart';
-import 'package:intricate1/routes/app_routes.dart';
-import 'package:intricate1/widgets/button/custom_button.dart';
+import 'package:intricate1/core/utils/image_path.dart';
+import 'package:intricate1/feature/auth/ui/screens/sign_up_screen.dart';
 
 class SignInScreen extends StatelessWidget {
-  SignInScreen({super.key});
-
-  final signInController = Get.put(SignInController());
+  const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final signInKey = GlobalKey<FormState>();
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.whiteColor,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: AppColors.whiteColor,
-        scrolledUnderElevation: 0,
-        centerTitle: true,
-        title: CustomText(
-          text: 'Sign In',
-          fontSize: 20.sp,
-          fontWeight: FontWeight.w600,
-          color: AppColors.fontColor,
-        ),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Form(
-            key: signInKey,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 24.h,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: CustomTextField(
-                      controller: signInController.emailController,
-                      validator: validateEmail,
-                      labelText: 'E-main',
-                      hintText: 'Enter your mail address'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: CustomTextField(
-                    controller: signInController.passwordController,
-                    validator: validateName,
-                    labelText: 'Password',
-                    hintText: '********',
-                    isObscure: true,
-                  ),
-                ),
-                SizedBox(
-                  height: 30.h,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Obx(() {
-                    return signInController.isLoading.value
-                        ? const Center(
-                            child:
-                                CircularProgressIndicator(),) // Show loading spinner
-                        : CustomButton(
-                            text: 'Sign In',
-                            color: AppColors.primaryColor,
-                            textColor: AppColors.whiteColor,
-                            borderRadius: 8.r,
-                            onTap: () async {
-                              if (signInKey.currentState!.validate()) {
-                               await signInController.signIn();
-                              }
-                            },
-                          );
-                  }),
-                ),
-
-                SizedBox(
-                  height: 30.h,
-                ),
-              ],
-            ),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.png'),
+            fit: BoxFit.cover,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 42),
-            child: RichText(
-              text: TextSpan(
-                text: 'Don’t have an account? ',
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14.sp,
-                  color: AppColors.fontColor,
-                ),
-                children: [
-                  TextSpan(
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Get.toNamed(AppRoute.signUp);
-                      },
-                    text: 'Sign up',
-                    style: GoogleFonts.dmSans(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.primaryColor,
+        ),
+        child: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    // Logo
+                    Image.asset(Images.authTypeLogo, height: 200.h, width: 327),
+                    const SizedBox(height: 50),
+                
+                    const Text(
+                      'Continue with email',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 34,
+                          fontWeight: FontWeight.w500),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 16),
+                
+                    RichText(
+                      text: const TextSpan(
+                        text: 'to continue to ',
+                        style: TextStyle(color: Colors.white, fontSize: 14),
+                        children: [
+                          TextSpan(
+                            text: 'Growefx',
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                
+                    // Email Field
+                    CustomTextField(
+                      labelText: 'Email ID',
+                      hintText: 'Email',
+                      controller: emailController,
+                      textInputType: TextInputType.emailAddress,
+                    ),
+                    SizedBox(height: 16.h),
+                
+                    // Password Field
+                    CustomTextField(
+                      labelText: 'Password',
+                      hintText: 'Password',
+                      isObscure: true,
+                      controller: passwordController,
+                    ),
+                    SizedBox(height: 24.h),
+                
+                    // Sign In Button
+                    ComponentCustomButton(
+                      text: 'Sign in',
+                      gradientColors: [
+                        const Color(0xFF7eb243),
+                        const Color(0xFF024015)
+                      ],
+                      borderRadius: 8,
+                      height: 50,
+                      onTap: () {
+                        // Sign in action
+                        Get.to(const SignInScreen());
+                      },
+                    ),
+                
+                    const SizedBox(height: 16),
+                    Text(
+                      'If you don’t have any account please',
+                      style: TextStyle(color: Colors.grey[400], fontSize: 14),
+                    ),
+                    const SizedBox(height: 12),
+                
+                    GestureDetector(
+                      onTap: () {
+                       Get.to(SignUpScreen());
+                      },
+                      child: const Text(
+                        'Sign up',
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }

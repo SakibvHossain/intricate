@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
+import 'package:get/get.dart';
+import 'package:intricate1/core/utils/image_path.dart';
+import 'package:intricate1/feature/auth/ui/screens/sign_in_screen.dart';
 
 class AuthTypeScreen extends StatelessWidget {
   const AuthTypeScreen({super.key});
@@ -10,14 +11,7 @@ class AuthTypeScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.blueGrey,
-              Colors.black
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
+          image: DecorationImage(image: AssetImage('assets/images/background.png'),fit: BoxFit.cover)
         ),
         child: SafeArea(
           child: Center(
@@ -27,7 +21,7 @@ class AuthTypeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // Logo
-                  Image.asset('assets/onboarding/images/selectauthtypescreen image.png'),
+                  Image.asset(Images.authTypeLogo),
                   const SizedBox(height: 50),
 
                   // Google Button
@@ -41,10 +35,12 @@ class AuthTypeScreen extends StatelessWidget {
                     ),
                     //icon: Image.asset('assets/google.png', height: 24),
                     label: const Text(
-                      "Continue with Google",
+                      'Continue with Google',
                       style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(SignInScreen());
+                    },
                   ),
                   const SizedBox(height: 16),
 

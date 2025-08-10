@@ -23,7 +23,7 @@ class DaySelectorWidget extends StatelessWidget {
       if (todayIndex != -1) {
         _scrollController.animateTo(
           todayIndex * 60.w,
-          duration: Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 500),
           curve: Curves.easeOut,
         );
       }
@@ -35,7 +35,7 @@ class DaySelectorWidget extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Colors.white, Colors.white],
                   begin: Alignment.topCenter,
@@ -53,7 +53,7 @@ class DaySelectorWidget extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final day = controller.days[index];
                   final today = DateTime.now();
-                  final yesterday = today.subtract(Duration(days: 1));
+                  final yesterday = today.subtract(const Duration(days: 1));
 
                   final bool isToday =
                       day.date.day == today.day &&
@@ -74,7 +74,7 @@ class DaySelectorWidget extends StatelessWidget {
                     bgColor = Colors.green;
                     textColor = Colors.white;
                   } else if (isToday) {
-                    bgColor = Color(0xFF5F6CAF);
+                    bgColor = const Color(0xFF5F6CAF);
                     textColor = Colors.white;
                   } else if (isFuture) {
                     bgColor = Colors.white;
@@ -95,7 +95,7 @@ class DaySelectorWidget extends StatelessWidget {
                         height: height,
                         decoration: BoxDecoration(
                           gradient: isToday
-                              ? LinearGradient(
+                              ? const LinearGradient(
                                   colors: [
                                     Color(0xFF5F6CAF),
                                     Color(0xFF7A8CD6),
@@ -107,7 +107,7 @@ class DaySelectorWidget extends StatelessWidget {
                           color: !isToday ? bgColor : null,
                           borderRadius: BorderRadius.circular(20.r),
                           boxShadow: [
-                            BoxShadow(
+                            const BoxShadow(
                               color: Colors.black12,
                               blurRadius: 10,
                               offset: Offset(0, 4),
