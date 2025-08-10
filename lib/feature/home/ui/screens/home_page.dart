@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.r),
                           side: BorderSide(
-                            color: Color(0xFF000000).withAlpha(50),
+                            color: const Color(0xFF000000).withAlpha(50),
                             width: 1.0,
                           ),
                         ),
@@ -78,15 +78,11 @@ class HomePage extends StatelessWidget {
                                 children: [
                                   Row(
                                     children: [
-                                      Icon(
-                                        Icons.access_time,
-                                        size: 16.sp,
-                                        color: Color(0xFF5F6CAF),
-                                      ),
+                                      Image.asset('assets/images/time.png'),
                                       SizedBox(width: 6.w),
                                       Text(
                                         task.time,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -96,8 +92,8 @@ class HomePage extends StatelessWidget {
                                     onTap: () {
                                       Get.to(() => NotePage());
                                     },
-                                    child: Text(
-                                      "Notes",
+                                    child: const Text(
+                                      'Notes',
                                       style: TextStyle(
                                         color: Color(0xFF5F6CAF),
                                         decoration: TextDecoration.underline,
@@ -106,11 +102,11 @@ class HomePage extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              Divider(color: Color(0xFFAFAFAF)),
+                              const Divider(color: Color(0xFFAFAFAF)),
                               SizedBox(height: 8.h),
                               Text(
                                 task.type,
-                                style: TextStyle(color: Color(0xFF2D2D2D)),
+                                style: const TextStyle(color: Color(0xFF2D2D2D)),
                               ),
                               SizedBox(height: 4.h),
                               Text(
@@ -185,12 +181,12 @@ class HomePage extends StatelessWidget {
                                   spaceBetweenPrefix: false,
                                 ),
                               SizedBox(height: 6.h),
-                              Divider(color: Color(0xFFAFAFAF)),
+                              const Divider(color: Color(0xFFAFAFAF)),
                               SizedBox(height: 6.h),
                               Text(
-                                "Once the task is complete, kindly submit your notes.",
+                                'Once the task is complete, kindly submit your notes.',
                                 style: TextStyle(
-                                  color: Color(0xFFF47C7C),
+                                  color: const Color(0xFFF47C7C),
                                   fontSize: 13.sp,
                                 ),
                               ),
