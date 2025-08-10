@@ -63,6 +63,9 @@ class CustomTextField extends StatelessWidget {
                   : null,
               style: GoogleFonts.poppins(
                 fontSize: 16.h,
+                textStyle: const TextStyle(
+                  color: Colors.white
+                ),
                 fontWeight: FontWeight.w400,
                 // color: AppColor.textColor,
               ),

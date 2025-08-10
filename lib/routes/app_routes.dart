@@ -4,6 +4,7 @@ class AppRoute{
   static const String signUp = '/signUp';
   static const String signIn = '/signIn';
   static const String trail = '/trail';
+  static const String questionScreen = '/questionScreen';
   static const String onboarding = '/onboarding';
   static const String navBar = '/navBar';
   static const String home = '/home';

@@ -13,6 +13,7 @@ class SignUpController extends GetxController{
   final userNameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final mobileController = TextEditingController();
   final preferencesHelper = SharedPreferencesHelper();
 
   Future<void> signUp() async {
@@ -21,6 +22,7 @@ class SignUpController extends GetxController{
       'userName': userNameController.text.trim(),
       'email': emailController.text.trim(),
       'password': passwordController.text.trim(),
+      // 'phone': passwordController.text.trim(),
     };
 
     try {
@@ -35,6 +37,7 @@ class SignUpController extends GetxController{
         passwordController.clear();
         fullNameController.clear();
         userNameController.clear();
+        // mobileController.clear();
 
         //* Implement route
         Get.to(() => OtpScreen());
