@@ -18,7 +18,7 @@ dependencies:
   get: ^4.6.6
   flutter_screenutil: ^5.9.3
   shared_preferences: ^2.3.5
-  google_fonts: ^6.2.1
+  google_fonts:
   dotted_line: ^3.2.3
   linear_calender: ^0.0.6
   fl_chart: ^0.70.2
