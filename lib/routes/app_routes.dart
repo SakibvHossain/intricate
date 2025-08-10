@@ -1,5 +1,6 @@
 class AppRoute{
   static const String splash = '/splash';
+  static const String authType = '/auth-type';
   static const String signUp = '/signUp';
   static const String signIn = '/signIn';
   static const String trail = '/trail';

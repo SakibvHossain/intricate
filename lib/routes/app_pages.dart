@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:intricate1/feature/auth/ui/screens/otp_screen.dart';
+import 'package:intricate1/feature/auth/ui/screens/select_authtype_screen.dart';
 import 'package:intricate1/feature/auth/ui/screens/sign_in_screen.dart';
 import 'package:intricate1/feature/auth/ui/screens/sign_up_screen.dart';
 import 'package:intricate1/feature/home/ui/screens/bottom_nav_screen.dart';
@@ -14,6 +15,10 @@ class AppPages {
       name: AppRoute.splash,
       page: () => const SplashScreen(),
       transition: Transition.rightToLeft,
+    ),GetPage(
+      name: AppRoute.authType,
+      page: () => const AuthTypeScreen(),
+      //transition: Transition.rightToLeft,
     ),
     GetPage(
       name: AppRoute.trail,
@@ -30,11 +35,11 @@ class AppPages {
       page: () => AssessmentPage(),
       transition: Transition.rightToLeft,
     ),
-    GetPage(
-      name: AppRoute.signIn,
-      page: () => SignInScreen(),
-      transition: Transition.leftToRight,
-    ),
+    // GetPage(
+    //   name: AppRoute.signIn,
+    //   page: () => SignInScreen(),
+    //   transition: Transition.leftToRight,
+    // ),
     GetPage(
       name: AppRoute.signUp,
       page: () => SignUpScreen(),
