@@ -53,11 +53,13 @@ class Onboarding1 extends StatelessWidget {
               Icon(
                 Icons.circle,
                 color: Color(0xff00D700),
+                size: 12,
               ),
-              Icon(Icons.circle, color: Colors.white),
+              Icon(Icons.circle, color: Colors.white,   size: 12,),
               Icon(
                 Icons.circle,
                 color: Colors.white,
+                size: 12,
               ),
             ],
           )
