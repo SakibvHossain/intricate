@@ -1,136 +1,152 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:get/get.dart';
-import 'package:intricate1/core/components/custom_text.dart';
+import 'package:intricate1/core/components/custom_button.dart';
 import 'package:intricate1/core/components/custom_text_field.dart';
-import 'package:intricate1/core/utils/app_colors.dart';
-import 'package:intricate1/core/validation/email_validation.dart';
-import 'package:intricate1/core/validation/name_validator.dart';
-import 'package:intricate1/core/validation/password_validation.dart';
-import 'package:intricate1/feature/auth/data/controller/sign_up_controller.dart';
-import 'package:intricate1/feature/auth/ui/screens/otp_screen.dart';
-import 'package:intricate1/routes/app_routes.dart';
-import 'package:intricate1/widgets/button/custom_button.dart';
+import 'package:intricate1/core/utils/image_path.dart';
 
 class SignUpScreen extends StatelessWidget {
-   SignUpScreen({super.key});
-
-  final SignUpController controller = Get.put(SignUpController());
+  const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final signUpKey = GlobalKey<FormState>();
+    final nameController = TextEditingController();
+    final emailController = TextEditingController();
+    final mobileController = TextEditingController();
+    final passwordController = TextEditingController();
+    final confirmPasswordController = TextEditingController();
+
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.whiteColor,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: AppColors.whiteColor,
-        scrolledUnderElevation: 0,
-        centerTitle: true,
-        title: CustomText(
-          text: 'Sign Up',
-          fontSize: 20.sp,
-          fontWeight: FontWeight.w600,
-          color: AppColors.fontColor,
-        ),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Form(
-            key: signUpKey,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 16.h,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: CustomTextField(
-                    controller: controller.fullNameController,
-                    validator: validateName,
-                      labelText: 'Full Name', hintText: 'Enter your full name'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: CustomTextField(
-                      controller: controller.userNameController,
-                      validator: validateName,
-                      labelText: 'Username', hintText: 'Enter your username'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: CustomTextField(
-                    controller: controller.emailController,
-                    validator: validateEmail,
-                      labelText: 'E-main', hintText: 'Enter your mail address'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: CustomTextField(
-                    controller: controller.passwordController,
-                    validator: validatePassword,
-                    labelText: 'Password',
-                    hintText: '********',
-                    isObscure: true,
-                  ),
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Obx((){
-                    return controller.isLoading.value ? const Center(child: CircularProgressIndicator(),) : CustomButton(
-                      text: 'Sign Up',
-                      color: AppColors.primaryColor,
-                      textColor: AppColors.whiteColor,
-                      borderRadius: 8.r,
-                      onTap: () {
-                        if (signUpKey.currentState!.validate()) {
-                          //Todo: Implement Signup after that use this Get.to(OtpScreen());
-                          controller.signUp();
-                        }else{
-                          debugPrint('++++++++++++++++++++++++++Something wrong happens');
-                        }
-                      },
-                    );
-                  }),
-                ),
-              ],
-            ),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background.png'),
+            fit: BoxFit.cover,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 42),
-            child: RichText(
-              text: TextSpan(
-                text: 'Already have an account? ',
-                style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14.sp,
-                  color: AppColors.fontColor,
-                ),
-                children: [
-                  TextSpan(
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        Get.offAllNamed(AppRoute.signIn);
-                      },
-                    text: 'Sign In',
-                    style: GoogleFonts.dmSans(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.primaryColor,
+        ),
+        child: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    // Logo
+                    Image.asset(Images.authTypeLogo, height: 200.h, width: 327),
+                    const SizedBox(height: 50),
+
+                    const Text(
+                      'Continue your account',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 16),
+
+                    RichText(
+                      text: const TextSpan(
+                        text: 'to continue to ',
+                        style: TextStyle(color: Colors.white, fontSize: 14),
+                        children: [
+                          TextSpan(
+                            text: 'Growefx',
+                            style: TextStyle(
+                              color: Colors.green,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+
+                    // Name Field
+                    CustomTextField(
+                      labelText: 'Enter your name',
+                      hintText: 'Full Name',
+                      controller: nameController,
+                    ),
+                    SizedBox(height: 16.h),
+
+                    // Email Field
+                    CustomTextField(
+                      labelText: 'Email ID',
+                      hintText: 'Email',
+                      controller: emailController,
+                      textInputType: TextInputType.emailAddress,
+                    ),
+                    SizedBox(height: 16.h),
+
+                    // Mobile Number Field
+                    CustomTextField(
+                      labelText: 'Mobile number',
+                      hintText: 'Mobile Number',
+                      controller: mobileController,
+                      textInputType: TextInputType.phone,
+                    ),
+                    SizedBox(height: 16.h),
+
+                    // Password Field
+                    CustomTextField(
+                      labelText: 'Password',
+                      hintText: 'Password',
+                      isObscure: true,
+                      controller: passwordController,
+                    ),
+                    SizedBox(height: 16.h),
+
+                    // Confirm Password Field
+                    CustomTextField(
+                      labelText: 'Confirm Password',
+                      hintText: 'Confirm Password',
+                      isObscure: true,
+                      controller: confirmPasswordController,
+                    ),
+                    SizedBox(height: 24.h),
+
+                    // Sign Up Button
+                    ComponentCustomButton(
+                      text: 'Sign in',
+                      gradientColors: [
+                        const Color(0xFF7eb243),
+                        const Color(0xFF024015)
+                      ],
+                      borderRadius: 8,
+                      height: 50,
+                      onTap: () {
+                        // 按钮点击事件
+                      },
+                    ),
+
+                    const SizedBox(height: 16),
+                    Text(
+                      'If you already have an account please',
+                      style: TextStyle(color: Colors.grey[400], fontSize: 14),
+                    ),
+                    const SizedBox(height: 12),
+
+                    GestureDetector(
+                      onTap: () {
+                        // Navigate to sign in screen
+                        // Get.to(SignInScreen());
+                      },
+                      child: const Text(
+                        'Sign in',
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }

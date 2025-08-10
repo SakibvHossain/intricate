@@ -6,6 +6,7 @@ class ComponentCustomButton extends StatelessWidget {
   final double? width;
   final double? height;
   final Color? color;
+  final List<Color>? gradientColors; // 新增渐变色参数
   final String text;
   final VoidCallback? onTap;
   final Widget? widget;
@@ -19,6 +20,7 @@ class ComponentCustomButton extends StatelessWidget {
     this.width,
     this.height,
     this.color,
+    this.gradientColors, // 新增渐变色参数
     this.onTap,
     this.widget,
     required this.text,
@@ -37,17 +39,25 @@ class ComponentCustomButton extends StatelessWidget {
         height: height ?? 52.h,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: color,
+          // 使用渐变色或纯色
+          gradient: gradientColors != null
+            ? LinearGradient(
+                colors: gradientColors!,
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              )
+            : null,
+          color: gradientColors == null ? color : null, // 当没有渐变时使用纯色
           borderRadius: BorderRadius.circular(borderRadius?.r ?? 12.r),
         ),
         child: text == ''
             ? const CircularProgressIndicator()
             : CustomText(
-          text: text,
-          fontSize: textFontSize??18.sp,
-          fontWeight: fontWeight ?? FontWeight.w600,
-          color: textColor ?? Colors.white,
-        ),
+                text: text,
+                fontSize: textFontSize ?? 18.sp,
+                fontWeight: fontWeight ?? FontWeight.w600,
+                color: textColor ?? Colors.white,
+              ),
       ),
     );
   }
