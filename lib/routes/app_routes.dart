@@ -8,6 +8,7 @@ class AppRoute{
   static const String navBar = '/navBar';
   static const String home = '/home';
   static const String otp = '/otp';
+  static const String brandYou = '/brandYou';
 
   static String onboardingPage() => onboarding;
   static String initialPage() => splash;
