@@ -27,7 +27,7 @@ class ComponentCustomButton extends StatelessWidget {
     this.borderRadius,
     this.textFontSize,
     this.textColor,
-    this.fontWeight,
+    this.fontWeight, CircularProgressIndicator? child,
   });
 
   @override
@@ -39,7 +39,6 @@ class ComponentCustomButton extends StatelessWidget {
         height: height ?? 52.h,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          // 使用渐变色或纯色
           gradient: gradientColors != null
             ? LinearGradient(
                 colors: gradientColors!,
@@ -47,7 +46,7 @@ class ComponentCustomButton extends StatelessWidget {
                 end: Alignment.bottomCenter,
               )
             : null,
-          color: gradientColors == null ? color : null, // 当没有渐变时使用纯色
+          color: gradientColors == null ? color : null,
           borderRadius: BorderRadius.circular(borderRadius?.r ?? 12.r),
         ),
         child: text == ''
