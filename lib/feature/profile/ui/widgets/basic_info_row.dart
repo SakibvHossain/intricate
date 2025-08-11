@@ -35,7 +35,7 @@ class BasicInfoRow extends StatelessWidget {
       text: value,
       fontSize: 12.sp,
       fontWeight: FontWeight.w400,
-      color: AppColors.fontColor,
+      color: Color(0xffFCFCFC),
     );
 
     return Row(
@@ -43,7 +43,7 @@ class BasicInfoRow extends StatelessWidget {
       children: [
         CustomText(
           text: label,
-          color: AppColors.fontColor,
+          color: Color(0xffFCFCFC),
           fontSize: 14.sp,
           fontWeight: FontWeight.w500,
         ),

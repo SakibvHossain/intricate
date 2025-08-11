@@ -21,7 +21,7 @@ class PlanTaskRow extends StatelessWidget {
       children: [
         CustomText(
           text: fieldName,
-          color: AppColors.fontColor,
+          color: Color(0xffADADAD),
           fontSize: 14.sp,
           fontWeight: FontWeight.w500,
         ),
@@ -33,7 +33,7 @@ class PlanTaskRow extends StatelessWidget {
             text: '$completedValue/$totalValue',
             fontSize: 12.sp,
             fontWeight: FontWeight.w400,
-            color: AppColors.fontColor,
+            color: Color(0xffADADAD),
           ),
         ),
       ],

@@ -14,7 +14,7 @@ class BasicInfoCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6.r),
         border: Border.all(
-          color: const Color(0xff919191).withOpacity(0.20),
+          color: const Color(0xffFCFCFC).withOpacity(0.20),
         ),
       ),
       child: Column(
@@ -23,7 +23,7 @@ class BasicInfoCard extends StatelessWidget {
               (i) => i.isEven
               ? infos[i ~/ 2]
               : Divider(
-            color: const Color(0xff919191).withOpacity(0.20),
+            color: const Color(0xffFCFCFC).withOpacity(0.20),
           ),
         ),
       ),

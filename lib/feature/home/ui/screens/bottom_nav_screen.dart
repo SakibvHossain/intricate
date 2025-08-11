@@ -22,7 +22,7 @@ class BottomNavScreen extends StatelessWidget {
   final List<TabItem> tabItems = [
     TabItem(
       button: const GButton(icon: Icons.home, text: 'Home'),
-      screen: HomePage(),
+      screen: const HomeScreen(),
     ),
     TabItem(
       button: const GButton(icon: Icons.search, text: 'Plans'),
