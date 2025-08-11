@@ -17,7 +17,7 @@ class Intricate extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Intricate',
-          initialRoute: AppRoute.note_page,
+          initialRoute: AppRoute.brandYou,
           getPages: AppPages.routes,
           initialBinding: AppBinding(),
           locale: const Locale('en', 'US'),
