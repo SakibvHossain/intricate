@@ -54,7 +54,7 @@ class BrandYouScreen extends StatelessWidget {
                   title: 'Communication',
                   subtitle:
                       'Conveying brand stories clearly and tailoring tone for different audiences.',
-                  ontap: () => Get.to(() => const CommunicationSurveyScreen()),
+                  ontap: () => Get.to(() =>  CommunicationSurveyScreen()),
                 ),
                 SizedBox(
                   height: 16.h,
@@ -64,7 +64,7 @@ class BrandYouScreen extends StatelessWidget {
                   title: 'Leadership',
                   subtitle:
                       'Guiding teams, pitching ideas, and influencing stakeholders in branding contexts.',
-                  ontap: () => Get.to(() => const LeadershipSurveyScreen()),
+                  ontap: () => Get.to(() =>  LeadershipSurveyScreen()),
                 ),
                 SizedBox(
                   height: 16.h,
@@ -74,7 +74,7 @@ class BrandYouScreen extends StatelessWidget {
                   title: 'Adaptability',
                   subtitle:
                       'Thriving amid rapid shifts in markets, technology, and consumer trends.',
-                  ontap: () => Get.to(const AdaptabilitySurveyScreen()),
+                  ontap: () => Get.to( AdaptabilitySurveyScreen()),
                 ),
                 SizedBox(
                   height: 16.h,
