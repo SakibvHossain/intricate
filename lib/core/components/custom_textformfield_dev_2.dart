@@ -212,6 +212,8 @@ class CustomTextField extends StatelessWidget {
     this.isCheckboxDropdown = false,
     this.selectedCheckboxItems,
     this.onCheckboxChanged,
+    this.borderradius
+
   });
 
   final String? hintText;
@@ -243,6 +245,7 @@ class CustomTextField extends StatelessWidget {
   final bool isCheckboxDropdown;
   final List<String>? selectedCheckboxItems;
   final void Function(List<String>)? onCheckboxChanged;
+  final double? borderradius;
 
   @override
   Widget build(BuildContext context) {
@@ -306,15 +309,15 @@ class CustomTextField extends StatelessWidget {
           )
               : null,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(borderradius??10.r),
             borderSide: borderSide ?? BorderSide.none,
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(borderradius??10.r),
             borderSide: borderSide ?? BorderSide.none,
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(borderradius??10.r),
             borderSide: borderSide ?? BorderSide.none,
           ),
           suffixIcon: isDropdown || isCheckboxDropdown
