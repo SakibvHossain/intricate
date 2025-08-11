@@ -11,8 +11,9 @@ class AuthTypeScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage('assets/images/background.png'),fit: BoxFit.cover)
-        ),
+            image: DecorationImage(
+                image: AssetImage('assets/images/background.png'),
+                fit: BoxFit.cover)),
         child: SafeArea(
           child: Center(
             child: Padding(
@@ -39,7 +40,7 @@ class AuthTypeScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     onPressed: () {
-                      Get.to(SignInScreen());
+                      // Get.to(SignInScreen());
                     },
                   ),
                   const SizedBox(height: 16),
@@ -55,10 +56,12 @@ class AuthTypeScreen extends StatelessWidget {
                     ),
                     icon: const Icon(Icons.email_outlined, color: Colors.white),
                     label: const Text(
-                      "Continue with email",
+                      'Continue with email',
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(const SignInScreen());
+                    },
                   ),
                   const SizedBox(height: 30),
 
@@ -67,14 +70,14 @@ class AuthTypeScreen extends StatelessWidget {
 
                   const SizedBox(height: 12),
                   Text(
-                    "If you don’t have any account please",
+                    'If you don’t have any account please',
                     style: TextStyle(color: Colors.grey[400], fontSize: 14),
                   ),
                   const SizedBox(height: 4),
                   GestureDetector(
                     onTap: () {},
                     child: const Text(
-                      "Sign up",
+                      'Sign up',
                       style: TextStyle(
                         color: Colors.green,
                         fontWeight: FontWeight.w500,

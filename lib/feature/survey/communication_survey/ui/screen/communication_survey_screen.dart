@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intricate1/core/components/custom_background.dart';
 import 'package:intricate1/core/components/custom_button.dart';
+import 'package:intricate1/feature/define_your_path/ui/question_screen.dart';
 import 'package:intricate1/feature/survey/communication_survey/data/controller/communicatio_survey_controller.dart';
 import 'package:get/get.dart';
 
@@ -159,7 +160,7 @@ class CommunicationSurveyScreen extends StatelessWidget {
                         controller
                             .clearSelection(); // Clear selected option for next question
                       } else {
-                        // Handle continue logic here
+                        Get.to(()=>TextQuestionScreen());
                       }
                     },
                   );
