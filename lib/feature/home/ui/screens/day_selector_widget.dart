@@ -13,12 +13,7 @@ class DaySelectorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final todayIndex = controller.days.indexWhere((day) {
-        final now = DateTime.now();
-        return day.date.day == now.day &&
-            day.date.month == now.month &&
-            day.date.year == now.year;
-      });
+      final todayIndex = controller.days.indexWhere((day) => day.isToday);
 
       if (todayIndex != -1) {
         _scrollController.animateTo(
@@ -30,177 +25,160 @@ class DaySelectorWidget extends StatelessWidget {
     });
 
     return Obx(
-      () => SizedBox(
-        height: 73.h,
+          () => SizedBox(
+        height: 90.h,
         child: Stack(
           children: [
             Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Colors.white, Colors.white],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.black, // Background color set to black
               ),
             ),
-            // Animated cards with reverse overlap
             Positioned.fill(
               child: ListView.builder(
                 controller: _scrollController,
                 scrollDirection: Axis.horizontal,
                 itemCount: controller.days.length,
-                padding: EdgeInsets.only(top: 10.h),
                 itemBuilder: (context, index) {
                   final day = controller.days[index];
-                  final today = DateTime.now();
-                  final yesterday = today.subtract(const Duration(days: 1));
 
-                  final bool isToday =
-                      day.date.day == today.day &&
-                      day.date.month == today.month &&
-                      day.date.year == today.year;
-                  final bool isYesterday =
-                      day.date.day == yesterday.day &&
-                      day.date.month == yesterday.month &&
-                      day.date.year == yesterday.year;
-                  final bool isFuture = day.date.isAfter(today);
+                  // Size logic: Only selected date is larger, others are minimized
+                  final double height = day.isSelected ? 90.h : 60.h;
+                  final double width = day.isSelected ? 113.w : 50.w;
+                  Color? bgColor;
+                  Color dayTextColor = Colors.white; // Day text color set to white
+                  Color dateTextColor = Colors.blue; // Date text color set to blue
 
-                  final double height = isToday ? 90.h : 70.h;
-                  final double width = isToday ? 113.w : 60.w;
-                  Color bgColor;
-                  Color textColor;
-
-                  if (isYesterday) {
-                    bgColor = Colors.green;
-                    textColor = Colors.white;
-                  } else if (isToday) {
-                    bgColor = const Color(0xFF5F6CAF);
-                    textColor = Colors.white;
-                  } else if (isFuture) {
-                    bgColor = Colors.white;
-                    textColor = Colors.black87;
+                  if (day.isSelected) {
+                    bgColor = const Color(0xFF008000); // Green for selected
+                  } else if (day.isToday) {
+                    bgColor = const Color(0xFF5F6CAF); // Blue for today
+                  } else if (day.isYesterday) {
+                    bgColor = const Color(0xFF00C781); // Green for yesterday
+                  } else if (day.isFuture) {
+                    bgColor = Colors.black; // White for future
                   } else {
-                    bgColor = Colors.grey;
-                    textColor = Colors.white;
+                    bgColor = Colors.grey; // Grey for past
                   }
 
-                  return AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
-                    curve: Curves.easeInOut,
-                    transform: Matrix4.translationValues(index * -15.w, 0, 0),
-                    child: Padding(
-                      padding: EdgeInsets.only(right: 2.w),
-                      child: Container(
-                        width: width,
-                        height: height,
-                        decoration: BoxDecoration(
-                          gradient: isToday
-                              ? const LinearGradient(
-                                  colors: [
-                                    Color(0xFF5F6CAF),
-                                    Color(0xFF7A8CD6),
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                )
-                              : null,
-                          color: !isToday ? bgColor : null,
-                          borderRadius: BorderRadius.circular(20.r),
-                          boxShadow: [
-                            const BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 10,
-                              offset: Offset(0, 4),
+                  return GestureDetector(
+                    onTap: () {
+                      controller.selectDay(index);
+                      // Animate scroll to center the selected day
+                      _scrollController.animateTo(
+                        index * 100.w,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInBack,
+                      );
+                    },
+                    child: Transform.translate(
+                      offset:Offset(index * -18.w, 0),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInBack,
+                        //transform: Matrix4.translationValues(index * -18.w, 0, 0),
+                        child: Padding(
+                          padding: EdgeInsets.only(right: 2.w),
+                          child: Container(
+                            width: width,
+                            height: height,
+                            decoration: BoxDecoration(
+                              color: bgColor,
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Colors.black12,
+                                  blurRadius: 10,
+                                  offset: Offset(0, 4),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        padding: EdgeInsets.symmetric(
-                          vertical: 8.h,
-                          horizontal: 6.w,
-                        ),
-                        child: Center(
-                          child: isToday
-                              ? Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Day ${day.dayNumber}',
-                                      style: TextStyle(
-                                        fontSize: 12.sp,
-                                        color: textColor,
-                                        fontWeight: FontWeight.w600,
-                                        shadows: [
-                                          Shadow(
-                                            color: Colors.black26,
-                                            offset: Offset(1, 1),
-                                            blurRadius: 2,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          DateFormat.E().format(day.date),
-                                          style: TextStyle(
-                                            fontSize: 13.sp,
-                                            color: textColor,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        SizedBox(width: 3.w),
-                                        Text(
-                                          DateFormat.d().format(day.date),
-                                          style: TextStyle(
-                                            fontSize: 13.sp,
-                                            color: textColor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        Text(
-                                          ',',
-                                          style: TextStyle(
-                                            fontSize: 13.sp,
-                                            color: textColor,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                        SizedBox(width: 3.w),
-                                        Text(
-                                          DateFormat.y().format(day.date),
-                                          style: TextStyle(
-                                            fontSize: 13.sp,
-                                            color: textColor,
-                                            fontWeight: FontWeight.w500,
-                                          ),
+                            child: Center(
+                              child: day.isSelected
+                                  ? Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Day ${day.dayNumber}',
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: dayTextColor, // White for day
+                                      fontWeight: FontWeight.w600,
+                                      shadows: const [
+                                        Shadow(
+                                          color: Colors.black26,
+                                          offset: Offset(1, 1),
+                                          blurRadius: 2,
                                         ),
                                       ],
                                     ),
-                                  ],
-                                )
-                              : Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      DateFormat.E().format(day.date),
-                                      style: TextStyle(
-                                        fontSize: 11.sp,
-                                        color: textColor,
-                                        fontWeight: FontWeight.w500,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        DateFormat.E().format(day.date),
+                                        style: TextStyle(
+                                          fontSize: 13.sp,
+                                          color: dayTextColor, // White for weekday
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      DateFormat.d().format(day.date),
-                                      style: TextStyle(
-                                        fontSize: 13.sp,
-                                        color: textColor,
-                                        fontWeight: FontWeight.normal,
+                                      SizedBox(width: 3.w),
+                                      Text(
+                                        DateFormat.d().format(day.date),
+                                        style: TextStyle(
+                                          fontSize: 13.sp,
+                                          color: dateTextColor, // Blue for date
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
+                                      Text(
+                                        ',',
+                                        style: TextStyle(
+                                          fontSize: 13.sp,
+                                          color: dayTextColor, // White for comma
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      SizedBox(width: 3.w),
+                                      Text(
+                                        DateFormat.y().format(day.date),
+                                        style: TextStyle(
+                                          fontSize: 13.sp,
+                                          color: dayTextColor, // White for year
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              )
+                                  : Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    DateFormat.E().format(day.date),
+                                    style: TextStyle(
+                                      fontSize: 11.sp,
+                                      color: dayTextColor, // White for weekday
+                                      fontWeight: FontWeight.w500,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  Text(
+                                    DateFormat.d().format(day.date),
+                                    style: TextStyle(
+                                      fontSize: 13.sp,
+                                      color: dateTextColor, // Blue for date
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
