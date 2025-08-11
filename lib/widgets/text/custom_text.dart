@@ -22,7 +22,7 @@ class CustomText extends StatelessWidget {
         fontWeight: fontWeight ?? FontWeight.w700,
         color: color ?? const Color(0xffFCFCFC),
         decoration: textDecoration ?? TextDecoration.none,
-        decorationColor: AppColors.primaryColor
+        decorationColor: Color(0xff00D700)
       ),
       textAlign: textAlign ?? TextAlign.center,
     );

@@ -19,7 +19,7 @@ class SectionHeader extends StatelessWidget {
             text: title,
             fontWeight: FontWeight.w600,
             fontSize: 18.sp,
-            color: AppColors.fontColor,
+            color: const Color(0xffFCFCFC),
           ),
           trailing ?? SizedBox(width: 18.w, height: 18.h),
         ],

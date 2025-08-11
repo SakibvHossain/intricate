@@ -17,7 +17,7 @@ class PlanInfoCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6.r),
         border: Border.all(
-          color: const Color(0xff919191).withOpacity(0.20),
+          color: const Color(0xffFCFCFC).withOpacity(0.20),
         ),
       ),
       child: Column(
@@ -29,7 +29,7 @@ class PlanInfoCard extends StatelessWidget {
                 text: plans[i].title,
                 fontSize: 18.sp,
                 fontWeight: FontWeight.w500,
-                color: AppColors.fontColor,
+                color: const Color(0xffFCFCFC),
               ),
             ),
             SizedBox(height: 8.h),
@@ -40,7 +40,7 @@ class PlanInfoCard extends StatelessWidget {
             ),
             if (i != plans.length - 1)
               Divider(
-                color: const Color(0xff919191).withOpacity(0.20),
+                color: const Color(0xffFCFCFC).withOpacity(0.20),
               ),
             SizedBox(height: 8.h),
           ]
