@@ -10,6 +10,7 @@ class AppRoute{
   static const String home = '/home';
   static const String otp = '/otp';
   static const String brandYou = '/brandYou';
+  static const String note_page='/note_page';
 
   static String onboardingPage() => onboarding;
   static String initialPage() => splash;
