@@ -6,6 +6,7 @@ import 'package:intricate1/feature/auth/ui/screens/sign_up_screen.dart';
 import 'package:intricate1/feature/brand_you/ui/screen/brand_you_screen.dart';
 import 'package:intricate1/feature/define_your_path/ui/question_screen.dart';
 import 'package:intricate1/feature/home/ui/screens/bottom_nav_screen.dart';
+import 'package:intricate1/feature/notes/ui/screens/note_page.dart';
 import 'package:intricate1/feature/onboarding/ui/screens/assessment_page.dart';
 import 'package:intricate1/feature/onboarding/ui/screens/splash_screen.dart';
 import 'package:intricate1/feature/onboarding/ui/screens/trail_screen.dart';
@@ -61,5 +62,6 @@ class AppPages {
       page: () => BrandYouScreen(),
       transition: Transition.rightToLeft,
     ),
+    GetPage(name: AppRoute.note_page, page: ()=>NotePage())
   ];
 }

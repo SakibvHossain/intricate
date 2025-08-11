@@ -30,7 +30,7 @@ class CustomTextField extends StatelessWidget {
     this.focusNode,
     this.nextFocus,
     this.onTap,
-    this.isPassword, this.textInputType,
+    this.isPassword, this.textInputType, Color? hintTextColor,
   });
 
   @override

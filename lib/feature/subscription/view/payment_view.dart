@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intricate1/core/components/custom_background.dart';
+import 'package:intricate1/core/components/custom_button.dart';
 import 'package:intricate1/core/components/custom_button_dev_2.dart';
 import 'package:intricate1/core/components/custom_textformfield_dev_2.dart';
 import 'package:intricate1/feature/plan/View/create_plan_screen.dart';
@@ -13,7 +15,8 @@ class PaymentView extends StatelessWidget {
   PaymentView({super.key});
 
   final BillingController _billingController = Get.find();
-  final SubscriptionController _subscriptionController = Get.find();
+  final SubscriptionController _subscriptionController =
+      Get.put(SubscriptionController());
 
   final List<String> countries = [
     'Afghanistan',
@@ -226,12 +229,12 @@ class PaymentView extends StatelessWidget {
     final TextEditingController expiryController = TextEditingController();
     final TextEditingController cvcController = TextEditingController();
     final TextEditingController nameOnCardController = TextEditingController(
-      // text:
-      //     '${_billingController.billingInfo.value.firstName} ${_billingController.billingInfo.value.lastName}',
-    );
+        // text:
+        //     '${_billingController.billingInfo.value.firstName} ${_billingController.billingInfo.value.lastName}',
+        );
     final TextEditingController countryController = TextEditingController(
-      // text: _billingController.billingInfo.value.country,
-    );
+        // text: _billingController.billingInfo.value.country,
+        );
     final TextEditingController zipCodeController = TextEditingController(
       text: _billingController.billingInfo.value.zipCode,
     );
@@ -267,28 +270,24 @@ class PaymentView extends StatelessWidget {
       });
     });
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(20.w),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Payment',
-                style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 20.h),
-              Container(
-                // height: MediaQuery.of(context).size.height * 0.7,
-                height: 480.h,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xFF5F6CAF)),
-                  borderRadius: BorderRadius.circular(8.r),
+    return CustomBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: SingleChildScrollView(
+          padding: EdgeInsets.all(20.w),
+          child: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Payment',
+                  style: TextStyle(
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xffFCFCFC)),
                 ),
-                // height: responsiveHeight,
-                child: Padding(
+                SizedBox(height: 20.h),
+                Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 16.w,
                     vertical: 16.h,
@@ -299,64 +298,67 @@ class PaymentView extends StatelessWidget {
                       Text(
                         'Card Information',
                         style: TextStyle(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xffFCFCFC)),
                       ),
                       SizedBox(height: 3.h),
                       Container(
-                        padding: EdgeInsets.all(15.w),
                         decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blue[200]!),
-                          borderRadius: BorderRadius.circular(10.r),
-                        ),
+                            border: Border.all(
+                                color: Color(0xffFCFCFC4D).withAlpha(30)),
+                            borderRadius: BorderRadius.circular(10.r),
+                            color: Colors.white.withAlpha(4)),
                         child: Column(
                           children: [
                             CustomTextField(
                               hintText: '4242 5859 5684 2585',
                               textEditingController: cardNumberController,
                               borderSide: BorderSide(color: Color(0xFF667085)),
+                              fillColor: Colors.white.withAlpha(4),
+                              borderradius: 0,
                             ),
-                            SizedBox(height: 8.h),
                             CustomTextField(
                               hintText: 'MM/YY',
                               textEditingController: expiryController,
                               borderSide: BorderSide(color: Color(0xFF667085)),
+                              fillColor: Colors.white.withAlpha(4),
+                              borderradius: 0,
                             ),
-                            SizedBox(height: 8.h),
                             CustomTextField(
                               hintText: 'CVC',
                               textEditingController: cvcController,
                               borderSide: BorderSide(color: Color(0xFF667085)),
+                              fillColor: Colors.white.withAlpha(4),
+                              borderradius: 0,
                             ),
                           ],
                         ),
                       ),
                       SizedBox(height: 15.h),
-
                       Text(
                         'Name On Card',
                         style: TextStyle(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xffFCFCFC)),
                       ),
                       SizedBox(height: 5.h),
-
                       CustomTextField(
                         hintText:
                             '3891 Ranchview Dr. Richardson, California 62639',
                         textEditingController: nameOnCardController,
-                        borderSide: BorderSide(color: Color(0xFF667085)),
+                        borderSide:
+                            BorderSide(color: Color(0xffFCFCFC).withAlpha(30)),
+                        fillColor: Colors.white.withAlpha(4),
                       ),
-
                       SizedBox(height: 15.h),
                       Text(
                         'Country or Region',
                         style: TextStyle(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xffFCFCFC)),
                       ),
                       SizedBox(height: 5.h),
                       CustomTextField(
@@ -367,38 +369,46 @@ class PaymentView extends StatelessWidget {
                         onDropdownChanged: (value) {
                           countryController.text = value ?? '';
                         },
-                        borderSide: BorderSide(color: Color(0xFF667085)),
+                        borderSide:
+                            BorderSide(color: Color(0xffFCFCFC).withAlpha(30)),
+                        fillColor: Colors.white.withAlpha(4),
+                        borderradius: 0,
                       ),
-                      SizedBox(height: 15.h),
                       CustomTextField(
                         hintText: '10001',
                         textEditingController: zipCodeController,
-                        borderSide: BorderSide(color: Color(0xFF667085)),
+                        borderSide:
+                            BorderSide(color: Color(0xffFCFCFC).withAlpha(30)),
+                        fillColor: Colors.white.withAlpha(4),
+                        borderradius: 0,
                       ),
                       SizedBox(height: 15.h),
                       Obx(() {
-                        final selectedPlan = _subscriptionController.plans
-                            .firstWhere(
-                              (plan) =>
-                                  plan.title ==
-                                  _subscriptionController.selectedPlan.value,
-                              orElse: () => _subscriptionController.plans.first,
-                            );
+                        final selectedPlan =
+                            _subscriptionController.plans.firstWhere(
+                          (plan) =>
+                              plan.title ==
+                              _subscriptionController.selectedPlan.value,
+                          orElse: () => _subscriptionController.plans.first,
+                        );
 
-                        return CustomButton(
-                          onPressed: _processPayment,
+                        return ComponentCustomButton(
+                          onTap: _processPayment,
                           text: 'Pay Now (${selectedPlan.price})',
-                          backgroundColor: Color(0xFF5F6CAF),
                           borderRadius: 12.r,
                           height: 56.h,
+                          gradientColors: [
+                            Color(0xff7EB243),
+                            Color(0xff024015)
+                          ],
                         );
                       }),
                     ],
                   ),
                 ),
-              ),
-              SizedBox(height: 30.h),
-            ],
+                SizedBox(height: 30.h),
+              ],
+            ),
           ),
         ),
       ),
