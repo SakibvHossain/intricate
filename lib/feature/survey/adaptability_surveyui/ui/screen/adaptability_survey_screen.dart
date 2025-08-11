@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intricate1/core/components/custom_background.dart';
 import 'package:intricate1/core/components/custom_button.dart';
+import 'package:intricate1/feature/define_your_path/ui/question_screen.dart';
 import 'package:intricate1/feature/survey/adaptability_surveyui/data/controller/adaptability_survey_controller.dart';
 
 class AdaptabilitySurveyScreen extends StatelessWidget {
@@ -157,7 +158,7 @@ class AdaptabilitySurveyScreen extends StatelessWidget {
                         controller
                             .clearSelection(); // Clear selected option for next question
                       } else {
-                        // Handle continue logic here
+                        Get.to(()=>TextQuestionScreen());
                       }
                     },
                   );

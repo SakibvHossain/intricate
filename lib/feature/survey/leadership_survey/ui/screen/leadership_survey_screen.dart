@@ -3,10 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intricate1/core/components/custom_background.dart';
 import 'package:intricate1/core/components/custom_button.dart';
+import 'package:intricate1/feature/define_your_path/ui/question_screen.dart';
 import 'package:intricate1/feature/survey/leadership_survey/data/controller/leadership_survey_controller.dart';
 
 class LeadershipSurveyScreen extends StatelessWidget {
-   LeadershipSurveyScreen({super.key});
+  LeadershipSurveyScreen({super.key});
 
   List<Map<String, dynamic>> questions = [
     {
@@ -56,10 +57,10 @@ class LeadershipSurveyScreen extends StatelessWidget {
     }
   ];
 
-
   @override
   Widget build(BuildContext context) {
-    final LeadershipSurveyController controller =Get.put(LeadershipSurveyController());
+    final LeadershipSurveyController controller =
+        Get.put(LeadershipSurveyController());
     final size = MediaQuery.of(context).size;
     return CustomBackground(
       child: Scaffold(
@@ -116,7 +117,7 @@ class LeadershipSurveyScreen extends StatelessWidget {
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color:
-                            isSelected ? Color(0x1F00D700) : Colors.white10,
+                                isSelected ? Color(0x1F00D700) : Colors.white10,
                             borderRadius: BorderRadius.circular(8.r),
                             border: isSelected
                                 ? Border.all(color: Color(0xFF00D700))
@@ -137,7 +138,7 @@ class LeadershipSurveyScreen extends StatelessWidget {
                     separatorBuilder: (context, index) =>
                         SizedBox(height: 16.h),
                     itemCount:
-                    questions[currentQuestionIndex]['options'].length,
+                        questions[currentQuestionIndex]['options'].length,
                   );
                 }),
 
@@ -158,7 +159,7 @@ class LeadershipSurveyScreen extends StatelessWidget {
                         controller
                             .clearSelection(); // Clear selected option for next question
                       } else {
-                        // Handle continue logic here
+                        Get.to(() => TextQuestionScreen());
                       }
                     },
                   );

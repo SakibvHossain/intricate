@@ -18,7 +18,7 @@ class Intricate extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Intricate',
 
-          initialRoute: AppRoute.questionScreen,
+          initialRoute: AppRoute.brandYou,
           getPages: AppPages.routes,
           initialBinding: AppBinding(),
           locale: const Locale('en', 'US'),

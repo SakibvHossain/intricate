@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intricate1/feature/define_your_path/data/model/question_model.dart';
+import 'package:intricate1/feature/home/ui/screens/bottom_nav_screen.dart';
 
 class QuestionController extends GetxController {
   final RxInt currentIndex = 0.obs;
 
   // One TextEditingController per field (even if only one field)
-  RxList<TextEditingController> fieldControllers = <TextEditingController>[].obs;
+  RxList<TextEditingController> fieldControllers =
+      <TextEditingController>[].obs;
 
   // Store all answers
   List<List<String>> answers = [];
 
   final List<TextQuestion> questions = [
-
     TextQuestion(
       subtitle: 'Please fill in your details',
       title: 'About You',
@@ -26,7 +27,6 @@ class QuestionController extends GetxController {
         'Robbins RPM Focus',
         'Lewis Value Proposition',
         'LinkedIn Profile',
-
       ],
     ),
     TextQuestion(
@@ -37,10 +37,10 @@ class QuestionController extends GetxController {
 
     TextQuestion(
       subtitle: 'Please fill in your details',
-      title: "What obstacle are you experiencing that's preventing your progress?",
+      title:
+          "What obstacle are you experiencing that's preventing your progress?",
       fields: [''],
     ),
-
 
     TextQuestion(
       subtitle: 'Please fill in your details',
@@ -49,7 +49,8 @@ class QuestionController extends GetxController {
     ),
     TextQuestion(
       subtitle: 'Please fill in your details',
-      title: 'On a scale of 1—10, how committed are you to achieving this outcome?',
+      title:
+          'On a scale of 1—10, how committed are you to achieving this outcome?',
       fields: [''],
     ),
     TextQuestion(
@@ -69,17 +70,20 @@ class QuestionController extends GetxController {
     ),
     TextQuestion(
       subtitle: 'Please fill in your details',
-      title: ' What timeframe are you hoping to achieve this transformation within?',
+      title:
+          ' What timeframe are you hoping to achieve this transformation within?',
       fields: [''],
     ),
     TextQuestion(
       subtitle: 'Please fill in your details',
-      title: 'Who in your life will support you through this journey, and how can they best assist?',
+      title:
+          'Who in your life will support you through this journey, and how can they best assist?',
       fields: [''],
     ),
     TextQuestion(
       subtitle: 'Please fill in your details',
-      title: 'What fears or concerns do you anticipate as you work toward your goal?',
+      title:
+          'What fears or concerns do you anticipate as you work toward your goal?',
       fields: [''],
     ),
     // Add more screens...
@@ -94,7 +98,8 @@ class QuestionController extends GetxController {
   void _initControllers() {
     fieldControllers.clear();
     final fieldCount = questions[currentIndex.value].fields.length;
-    fieldControllers.addAll(List.generate(fieldCount, (_) => TextEditingController()));
+    fieldControllers
+        .addAll(List.generate(fieldCount, (_) => TextEditingController()));
   }
 
   void nextQuestion() {
@@ -105,7 +110,8 @@ class QuestionController extends GetxController {
       currentIndex.value++;
       _initControllers();
     } else {
-      Get.snackbar('Done', 'You’ve completed all questions!');
+      // Get.snackbar('Done', 'You’ve completed all questions!');
+      Get.offAll(() => BottomNavScreen());
     }
   }
 }
