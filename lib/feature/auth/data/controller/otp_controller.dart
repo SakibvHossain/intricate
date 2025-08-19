@@ -1,31 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intricate1/core/helper/sheared_prefarences_helper.dart';
 import 'package:intricate1/core/network_caller/service/service.dart';
 import 'package:intricate1/core/network_caller/utils/utils.dart';
-import 'package:intricate1/feature/brand_you/ui/screen/brand_you_screen.dart';
 import 'package:intricate1/routes/app_routes.dart';
+import 'package:logger/logger.dart';
 
 class OtpController extends GetxController {
   final isLoading = false.obs;
   final emailController = TextEditingController();
   final otpCodeController = TextEditingController();
 
-  final preferencesHelper = SharedPreferencesHelper();
+  // Initialize logger
+  final logger = Logger();
+
+  // Variable to store the accessToken temporarily in memory
+  String? accessToken;
 
   Future<void> verifyOTP() async {
     final Map<String, dynamic> verifyOtp = {
-      'email': emailController.text.trim(),
-      'otp': int.parse(otpCodeController.text.trim()),
+      'email': emailController.text.isNotEmpty ? emailController.text : '',
+      'otp': otpCodeController.text.isNotEmpty ? int.parse(otpCodeController.text.trim()) : 0,
     };
 
     try {
       isLoading.value = true;
       final String url = Utils.baseUrl + Utils.verifyOTP;
 
-
-      debugPrint(emailController.text.trim());
-      debugPrint('${int.parse(otpCodeController.text.trim())}');
+      // Log email and OTP
+      logger.d('Email: ${emailController.text.trim()}');
+      logger.d('OTP: ${otpCodeController.text.trim()}');
 
       final response = await NetworkCaller().postRequest(
         url,
@@ -33,20 +36,22 @@ class OtpController extends GetxController {
       );
 
       if (response.isSuccess) {
-        await preferencesHelper.setString('userToken', response.responseData['accessToken']);
-        emailController.clear();
-        otpCodeController.clear();
+          // Clear the text fields
+          emailController.clear();
+          otpCodeController.clear();
 
-        //* Implement route
-        Get.offAll(()=>const BrandYouScreen());
-        // Get.toNamed(AppRoute.signIn);
-      } else if (response.statusCode == 409) {
+          // Implement route navigation
+          Get.toNamed(AppRoute.signIn);
+      } else if (response.statusCode == 404) {
         Get.snackbar('Email Exist', 'This email already been used', backgroundColor: const Color(0xffF44336));
       }
     } catch (e) {
-      debugPrint('Error: $e');
+      // Log any error that occurs
+      logger.e('Error: $e');
     } finally {
       isLoading.value = false;
     }
   }
 }
+
+

@@ -6,14 +6,14 @@ import 'package:intricate1/core/components/custom_text_field.dart';
 import 'package:intricate1/core/utils/image_path.dart';
 import 'package:intricate1/feature/auth/data/controller/sign_in_controller.dart';
 import 'package:intricate1/feature/auth/ui/screens/sign_up_screen.dart';
+import 'package:intricate1/feature/onboarding/ui/screens/assessment_page.dart';
+import 'package:intricate1/routes/app_routes.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
     final signInController = Get.put(SignInController());
 
     final GlobalKey<FormState> signInKey = GlobalKey<FormState>();
@@ -71,7 +71,7 @@ class SignInScreen extends StatelessWidget {
                       CustomTextField(
                         labelText: 'Email ID',
                         hintText: 'Email',
-                        controller: emailController,
+                        controller: signInController.emailController,
                         textInputType: TextInputType.emailAddress,
                       ),
                       SizedBox(height: 16.h),
@@ -81,7 +81,7 @@ class SignInScreen extends StatelessWidget {
                         labelText: 'Password',
                         hintText: 'Password',
                         isObscure: true,
-                        controller: passwordController,
+                        controller: signInController.passwordController,
                       ),
                       SizedBox(height: 24.h),
 
@@ -100,10 +100,11 @@ class SignInScreen extends StatelessWidget {
                                 onTap: () async {
                                   if (signInKey.currentState!.validate()) {
                                     await signInController.signIn();
-                                  }
-
-                                },
-                              );
+                                    // }
+                                    Get.toNamed(AppRoute.brandYou);
+                                    //Get.to(AssessmentPage());
+                                  };
+                                });
                       }),
                       const SizedBox(height: 16),
 
@@ -115,7 +116,7 @@ class SignInScreen extends StatelessWidget {
 
                       GestureDetector(
                         onTap: () {
-                          Get.to(SignUpScreen());
+                          Get.to(const SignUpScreen());
                         },
                         child: const Text(
                           'Sign up',

@@ -64,6 +64,11 @@ class AppPages {
       transition: Transition.rightToLeft,
     ),
     GetPage(name: AppRoute.note_page, page: ()=>NotePage()),
-    GetPage(name: AppRoute.home_screen, page: ()=>const HomeScreen())
+    GetPage(name: AppRoute.home_screen, page: ()=>const HomeScreen()),
+    GetPage(
+      name: AppRoute.signIn,
+      page: () => const SignInScreen(),
+      transition: Transition.rightToLeft,
+    )
   ];
 }

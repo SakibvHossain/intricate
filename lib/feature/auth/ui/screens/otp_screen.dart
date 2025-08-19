@@ -14,7 +14,6 @@ class OtpScreen extends StatelessWidget {
   OtpScreen({super.key});
 
   final otpController = Get.put(OtpController());
-
   @override
   Widget build(BuildContext context) {
     final signInKey = GlobalKey<FormState>();
@@ -68,7 +67,7 @@ class OtpScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 16.0),
                             child: CustomTextField(
-                              controller: otpController.emailController,
+                              controller:otpController.emailController,
                               validator: validateEmail,
                               labelText: 'E-mail',
                               hintText: 'Enter your mail address',
