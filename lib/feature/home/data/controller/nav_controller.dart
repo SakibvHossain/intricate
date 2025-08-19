@@ -1,9 +1,13 @@
 import 'package:get/get.dart';
 
-class NavController extends GetxController {
-  var currentIndex = 0.obs;
+class NavbarController extends GetxController {
+  static NavbarController get to => Get.find();
 
-  void changeTab(int index) {
-    currentIndex.value = index;
-  }
+  RxInt currentIndex = 0.obs;
+  RxBool isVisible = true.obs;
+
+  void changeTab(int index) => currentIndex.value = index;
+
+  void show() => isVisible.value = true;
+  void hide() => isVisible.value = false;
 }

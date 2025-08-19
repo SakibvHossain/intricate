@@ -31,11 +31,14 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height: 20.h),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        IconButton(onPressed: (){}, icon:const Icon(Icons.arrow_back_ios, color: Colors.white)),
+                        IconButton(onPressed: (){
+                          Get.back();
+                        }, icon:const Icon(Icons.arrow_back_ios, color: Colors.white)),
                         const Text('Back',style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 22),)
                       ],
                     ),

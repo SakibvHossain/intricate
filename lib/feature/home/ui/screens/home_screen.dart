@@ -5,20 +5,25 @@ import 'package:get/get.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:intricate1/app_icons.dart';
 import 'package:intricate1/core/components/custom_background.dart';
-import 'package:intricate1/core/components/custom_button1.dart';
+import 'package:intricate1/feature/home/data/controller/nav_controller.dart';
+import 'package:intricate1/feature/home/ui/screens/bottom_nav_screen.dart';
+import 'package:intricate1/feature/home/ui/screens/home_page.dart';
+import 'package:intricate1/feature/home/ui/screens/timer_page.dart';
 import 'package:intricate1/feature/home/ui/widgets/custom_button.dart';
 import 'package:intricate1/feature/home/ui/widgets/custom_task.dart';
 import 'package:intricate1/feature/home/ui/widgets/fl_chart_bar.dart';
+import 'package:intricate1/feature/notes/ui/screens/note_page.dart';
 import 'package:intricate1/feature/profile/ui/screens/profile_screen.dart';
-import 'package:intricate1/generated/assets.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
+   HomeScreen({super.key});
+  final navbarController = Get.put(NavbarController());
   @override
   Widget build(BuildContext context) {
+
+    NavbarController.to.show();
     return   CustomBackground(
-      child: Scaffold(   
+      child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           backgroundColor: Colors.white.withAlpha(4),
@@ -28,7 +33,7 @@ class HomeScreen extends StatelessWidget {
               padding: EdgeInsets.all(10),
               child: GestureDetector(
                 onTap: () =>  Get.to(const ProfileScreen()),
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   radius: 33,
                   backgroundColor: Colors.white,
                   backgroundImage: AssetImage('assets/profile/image/profile.png'),
@@ -54,13 +59,17 @@ class HomeScreen extends StatelessWidget {
                  TodaysTaskWidget(
                  title: '5-minute breathing exercise', 
                  time: '2.00', 
-                 child: CustomButtonWidget(text: 'Start Now', iconpath: AppIcons.clock_icon, onTap: (){}),
+                 child: CustomButtonWidget(text: 'Start Now', iconpath: AppIcons.clock_icon, onTap: (){
+                   Get.to(const TimerPage());
+                 }),
                   ),
                   SizedBox(height: 16.h,),
                    TodaysTaskWidget(
                  title: 'How to Calm Your Morning', 
                  time: '7.00', 
-                 child: CustomButtonWidget(text: 'Watch Video', iconpath: AppIcons.video_icon, onTap: (){}),
+                 child: CustomButtonWidget(text: 'Watch Video', iconpath: AppIcons.video_icon, onTap: (){
+                   Get.to( HomePage());
+                 }),
                 // child: CustomButton1(
                 //   onPressed: () {
                     
@@ -76,7 +85,9 @@ class HomeScreen extends StatelessWidget {
                    TodaysTaskWidget(
                  title: 'List 3 things that made you smile this week', 
                  time: '5.00', 
-                 child: CustomButtonWidget(text: 'Write your thing', iconpath: AppIcons.note_pad_icon, onTap: (){}),
+                 child: CustomButtonWidget(text: 'Write your thing', iconpath: AppIcons.note_pad_icon, onTap: (){
+                   Get.to( NotePage());
+                 }),
                   ),
                   SizedBox(height: 16.h,),
                   
