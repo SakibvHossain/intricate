@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:intricate1/core/binding/binding.dart';
+import 'package:intricate1/feature/home/ui/screens/bottom_nav_screen.dart';
 import 'package:intricate1/routes/app_pages.dart';
 import 'package:intricate1/routes/app_routes.dart';
 
@@ -17,7 +18,7 @@ class Intricate extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Intricate',
-          initialRoute: AppRoute.brandYou,
+          initialRoute: AppRoute.bottomNav(),
           getPages: AppPages.routes,
           initialBinding: AppBinding(),
           locale: const Locale('en', 'US'),
